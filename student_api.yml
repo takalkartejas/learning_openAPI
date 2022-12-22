@@ -1,0 +1,22 @@
+openapi: 3.0.2
+info:
+  title: Student API
+  description: student demp API
+  # the version is of our api
+  version: 1.0.0 
+  #use cntrl + space to check all the sub options in avery option
+  # for example inside contact we have name and url
+  contact:
+    name: Tejas
+#we can specify the urls of  multiple servers here
+servers:
+  - url: http://logicpanacia.com
+  - url: http://tejas.com
+
+# within paths we specify our api resources 
+# and within these resources we specify the operation like get, post
+paths:
+  # here the resource is student
+  /student:
+    #in the real scenario we must write the description in detail
+    description: Student Resource   
