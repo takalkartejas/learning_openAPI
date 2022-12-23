@@ -19,4 +19,53 @@ paths:
   # here the resource is student
   /student:
     #in the real scenario we must write the description in detail
-    description: Student Resource   
+    description: Student Resource  
+    get:
+      description: Operation to Fetch Student
+      parameters:
+          #type of parameter
+        - in: query
+          name: studentname
+          # not optional aka mandtory 
+          required: true
+          schema:
+            #datatype is string
+            type: string
+            example: Tejas
+      responses:
+        200:
+          description: Success Response
+          content:
+            application/json:
+# The database schema is the structure of a database described
+# in a formal language supported by the database management system (DBMS).
+# OpenAPI 3.0 data types are based on an extended subset JSON
+# Schema Specification Wright Draft 00 (aka Draft 5). 
+# The data types are described using a Schema object.
+# there are two types of approaches for scehma-
+# 1. define all the details of the response and request
+#    payloads within the details of our operation
+#    i.e directly define schema in operation
+# 2. We use the components i.e. we define reusable schemas 
+#    and refer them in any requred operations, 
+#    like the usermodel that we defined in fastAPI course
+            
+            # here we use 1st method
+              schema:
+                type: array
+                # these are items of the array
+                items:
+                  properties:
+                    StudentID:
+                      type: integer
+                      example: 3
+                    StudentName:
+                      type: string
+                      example: david
+                    StudentRemarks:
+                      type: string
+                      example: High Grade Student
+
+
+
+

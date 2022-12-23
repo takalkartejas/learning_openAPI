@@ -1,6 +1,6 @@
 # learning_OpenAPI
 
-Video link - https://www.youtube.com/watch?v=GN6ICac3OXY&t=647s
+Video link - https://youtu.be/mViFmjcDOoA
 
 ---
 
