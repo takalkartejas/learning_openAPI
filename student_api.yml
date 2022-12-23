@@ -1,3 +1,18 @@
+# 1. Schema:- 
+  # The database schema is the structure of a database described
+  # in a formal language supported by the database management system (DBMS).
+  # OpenAPI 3.0 data types are based on an extended subset JSON
+  # Schema Specification Wright Draft 00 (aka Draft 5). 
+  # The data types are described using a Schema object.
+  # there are two types of approaches for scehma-
+  # i. define all the details of the response and request
+  #    payloads within the details of our operation
+  #    i.e directly define schema in operation
+  # ii. We use the components i.e. we define reusable schemas 
+  #    and refer them in any requred operations, 
+  #    like the usermodel that we defined in fastAPI course
+
+
 openapi: 3.0.2
 info:
   title: Student API
@@ -37,23 +52,12 @@ paths:
           description: Success Response
           content:
             application/json:
-# The database schema is the structure of a database described
-# in a formal language supported by the database management system (DBMS).
-# OpenAPI 3.0 data types are based on an extended subset JSON
-# Schema Specification Wright Draft 00 (aka Draft 5). 
-# The data types are described using a Schema object.
-# there are two types of approaches for scehma-
-# 1. define all the details of the response and request
-#    payloads within the details of our operation
-#    i.e directly define schema in operation
-# 2. We use the components i.e. we define reusable schemas 
-#    and refer them in any requred operations, 
-#    like the usermodel that we defined in fastAPI course
-            
-            # here we use 1st method
+              # refer explaination 1.
+              # here we use 1st method
               schema:
+                # array of students
                 type: array
-                # these are items of the array
+                
                 items:
                   properties:
                     StudentID:
@@ -65,7 +69,30 @@ paths:
                     StudentRemarks:
                       type: string
                       example: High Grade Student
+    post:
+      description: add a new student
+      requestBody:
+        content:
+          # content type json
+          application/json:
+            schema:
+              # object of user model
+              type: object
+              # copied the schema from get
+              items:
+                properties:
+                  StudentID:
+                    type: integer
+                    example: 3
+                  StudentName:
+                    type: string
+                    example: david
+                  StudentRemarks:
+                    type: string
+                    example: High Grade Student              
 
-
-
+      responses:
+        201:
+          description: Record successfully added
+        # no need to put content here
 
