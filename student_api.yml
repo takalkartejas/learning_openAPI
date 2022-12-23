@@ -57,7 +57,7 @@ paths:
               schema:
                 # array of students
                 type: array
-                
+                # items are the students in the list
                 items:
                   properties:
                     StudentID:
@@ -78,21 +78,51 @@ paths:
             schema:
               # object of user model
               type: object
-              # copied the schema from get
-              items:
-                properties:
-                  StudentID:
-                    type: integer
-                    example: 3
-                  StudentName:
-                    type: string
-                    example: david
-                  StudentRemarks:
-                    type: string
-                    example: High Grade Student              
+              # copied the properties from get
+              # here there are no items, as it is only one object not a list
+              properties:
+                StudentID:
+                  type: integer
+                  example: 4
+                StudentName:
+                  type: string
+                  example: david
+                StudentRemarks:
+                  type: string
+                  example: High Grade Student              
 
       responses:
         201:
           description: Record successfully added
         # no need to put content here
-
+  # we create other resource      
+  /student{id}:
+    description: get student based on path parameter
+    get:
+      parameters:
+          # previously this parameter was -in: query
+        - in: path
+          name: id
+          # mandatory 
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success response with path parameter
+          content:
+            application/json:
+              schema:
+                # copy schema from previous get
+                type: array
+                items:
+                  properties:
+                    StudentID:
+                      type: integer
+                      example: 3
+                    StudentName:
+                      type: string
+                      example: david
+                    StudentRemarks:
+                      type: string
+                      example: High Grade Student
