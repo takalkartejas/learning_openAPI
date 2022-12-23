@@ -53,22 +53,10 @@ paths:
           content:
             application/json:
               # refer explaination 1.
-              # here we use 1st method
+              # We are using approach ii. similar to describing class and 
+              #using its objects multiple times
               schema:
-                # array of students
-                type: array
-                # items are the students in the list
-                items:
-                  properties:
-                    StudentID:
-                      type: integer
-                      example: 3
-                    StudentName:
-                      type: string
-                      example: david
-                    StudentRemarks:
-                      type: string
-                      example: High Grade Student
+                  $ref: '#/components/schemas/students'
     post:
       description: add a new student
       requestBody:
@@ -76,20 +64,7 @@ paths:
           # content type json
           application/json:
             schema:
-              # object of user model
-              type: object
-              # copied the properties from get
-              # here there are no items, as it is only one object not a list
-              properties:
-                StudentID:
-                  type: integer
-                  example: 4
-                StudentName:
-                  type: string
-                  example: david
-                StudentRemarks:
-                  type: string
-                  example: High Grade Student              
+              $ref: '#/components/schemas/student'           
 
       responses:
         201:
@@ -113,16 +88,40 @@ paths:
           content:
             application/json:
               schema:
-                # copy schema from previous get
-                type: array
-                items:
-                  properties:
-                    StudentID:
-                      type: integer
-                      example: 3
-                    StudentName:
-                      type: string
-                      example: david
-                    StudentRemarks:
-                      type: string
-                      example: High Grade Student
+                $ref: '#/components/schemas/students'
+
+
+# refer explaination 1.
+# We are using approach ii. similar to describing class and using its 
+# objects multiple times
+components:
+  schemas:
+  # first component with type object
+    student: 
+      type: object
+      properties:             
+        StudentID:
+          type: integer
+          example: 3
+        StudentName:
+          type: string
+          example: david
+        StudentRemarks:
+          type: string
+          example: High Grade Student
+    # second component with type array
+    students: 
+      type: array
+      #array of students
+      # items are the students in the list
+      items:
+        properties:             
+          StudentID:
+            type: integer
+            example: 3
+          StudentName:
+            type: string
+            example: david
+          StudentRemarks:
+            type: string
+            example: High Grade Student
