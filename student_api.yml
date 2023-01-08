@@ -25,7 +25,7 @@ info:
     name: Tejas
 #we can specify the urls of  multiple servers here
 servers:
-  - url: http://logicpanacia.com
+  - url: localhost/8000
   - url: http://tejas.com
 
 # within paths we specify our api resources 
